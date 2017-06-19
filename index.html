@@ -1,0 +1,61 @@
+---
+carousel:
+  - id: pages
+    title: Number of Pages
+    description: The number of pages your site will determine how much design work will be needed.
+    options:
+      - label: I need a simple landing page. (1 to 2 pages)
+        price: '500'
+      - label: I need a basic website. (3 to 8 pages)
+        price: '1000'
+      - label: I need a large website. (9 or more pages)
+        price: '1500'
+  - id: blog
+    title: Blog
+    description: With a blogging section you will be able to post and update articles whenever you please.
+    options:
+      - label: I need a blog with comments.
+        price: 200
+      - label: I do not need a blog.
+        price: 0
+  - id: ecommerce
+    title: E-commerce
+    description: "There are a number of ways to sell online; we'll discuss your goals and find the best solution for you."
+    options:
+      - label: I am not selling anything online.
+        price: '0'
+      - label: I need a basic online store.
+        price: '500'
+      - label: I need an online store with custom functionality.
+        price: '1000'
+  - id: email
+    title: Email Capture
+    description: 'You can collect visitor emails to send newsletters, offers, updates, etc.'
+    options:
+      - label: I want to collect visitor emails.
+        price: '200'
+      - label: I do not want to collect visitor emails.
+        price: '0'
+  - id: facebook
+    title: Facebook Pixel
+    description: "Use Facebook's powerful ad platform to retarget people who have visited your site, made purchases, and more."
+    options:
+      - label: I want to retarget visitors.
+        price: '100'
+      - label: I do not want to retarget visitors.
+        price: '0'
+---
+<div class="row">
+  <div class="col s12">
+    <div class="carousel carousel-slider center">
+      {% include carousel/intro.html %}
+      
+      {% for carousel in page.carousel %}
+      {% include carousel/default.html id=carousel.id title=carousel.title description=carousel.description options=carousel.options %}
+      {% endfor %}
+      
+      {% include carousel/misc.html %}
+      {% include carousel/contact.html %}
+    </div>
+  </div>
+</div>

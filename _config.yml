@@ -1,0 +1,16 @@
+url: https://pricing.undercastmedia.com
+markdown: kramdown
+
+sass:
+  style: compressed
+  
+uploads_dir: 'images/uploads'
+
+defaults:
+  - scope:
+      path: "index.html"
+    values:
+      layout: "default"
+      
+offline:
+  strategy: network-first-cache-fallback
