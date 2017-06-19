@@ -1,0 +1,42 @@
+body {
+  background-color: {{ site.data.theme.primary_color }};
+}
+
+input[type=email]:focus:not([readonly]) {
+  border-bottom: 1px solid {{ site.data.theme.accent_color }};
+  box-shadow: 0 1px 0 0 {{ site.data.theme.accent_color }};
+}
+
+input[type=email]:focus:not([readonly]) + label {
+  color: {{ site.data.theme.accent_color }};
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:before,
+[type="radio"].with-gap:checked + label:after {
+  border: 2px solid {{ site.data.theme.accent_color }};
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:after {
+  background-color: {{ site.data.theme.accent_color }};
+}
+
+.btn {
+  background-color: {{ site.data.theme.accent_color }};
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: darken({{ site.data.theme.accent_color }}, 5%);
+}
+
+.btn-inverted {
+  background-color: #fff;
+  color: {{ site.data.theme.accent_color }};
+}
+
+.btn-inverted:hover,
+.btn-inverted:focus {
+  background-color: darken(#fff, 5%);
+}

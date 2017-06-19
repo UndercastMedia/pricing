@@ -1,0 +1,25 @@
+<div class="carousel-item">
+  <div class="content-wrapper">
+    <h1>Your Estimate:<br><span id="estimate"></span></h1>
+    <p class="editable">If you'd like to get a free mockup of your new site, a custom estimate, or learn more just fill out the form below and we'll reach out to you within a few hours.</p>
+    <form action="https://formspree.io/{{ site.data.theme.email_address }}" method="POST">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" name="_replyto" class="validate">
+          <label for="email" data-error="That email isn't valid." data-success="Looks good!">Your Email Address</label>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light wide" type="submit">Get More Information</button>
+
+      <input type="hidden" name="_to" value="eric@undercastmedia.com">
+      <input type="hidden" name="_subject" value="More Information Request">
+      <input type="text" name="_gotcha" style="display:none">
+      <input type="hidden" name="_next" value="/success">
+    </form>
+    <div class="actions">
+      <a class="btn btn-inverted waves-effect wide" onclick="restart()">Change Answers</a>
+      <a href="https://undercastmedia.com" class="btn btn-inverted waves-effect wide">Return to Full Site</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="carousel-item">
+  <div class="content-wrapper">
+    <h2>{{ include.title }}</h2>
+    <p>{{ include.description }}</p>
+    <form>
+      {% for option in include.options %}
+      <p>
+        <input class="with-gap"
+               name="{{ include.id }}"
+               type="radio"
+               id="{{ include.id }}{{ forloop.index }}"
+               {% if forloop.first %}checked{% endif %}
+               onclick="update{{ include.id | capitalize }}({{ option.price }})">
+        <label for="{{ include.id }}{{ forloop.index }}">{{ option.label }}</label>
+      </p>
+      {% endfor %}
+    </form>
+    <div class="actions">
+      <a class="btn btn-inverted waves-effect prev" onclick="prev()">Back</a>
+      <a class="btn waves-effect waves-light next" onclick="next()">Next</a>
+    </div>
+  </div>
+</div>

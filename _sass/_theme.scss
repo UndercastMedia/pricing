@@ -1,0 +1,24 @@
+@import "theme-components/carousel";
+@import "theme-components/form";
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.row .col {
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-weight: 400;
+  letter-spacing: -0.10rem;
+  font-size: 2.42rem;
+  line-height: 2.86rem;
+}
+
+.btn.wide {
+  margin-top: 10px;
+  width: 100%;
+}

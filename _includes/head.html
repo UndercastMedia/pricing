@@ -1,0 +1,21 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
+  
+  {% include seo.html %}
+  
+  <link rel="icon" type="image/x-icon" href="{{ site.data.theme.favicon_image }}">
+  <link rel="icon" href="{{ site.url }}/touch-icon.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="{{ site.url }}/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="{{ site.data.manifest.theme_color }}">
+  
+  {% capture styles %}{% include styles.scss %}{% endcapture %}
+  {% capture custom %}{% include custom.scss %}{% endcapture %}
+  <style>
+    {{ styles | scssify }}
+    {{ custom | scssify }}
+  </style>
+</head>

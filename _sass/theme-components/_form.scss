@@ -1,0 +1,21 @@
+form {
+
+  margin: auto;
+  max-width: 320px;
+  padding-top: 10px;
+
+  input {
+    color: #fff;
+    margin: 0 !important;
+  }
+  
+  .input-field.col label {
+    left: 0;
+  }
+  
+  [type="checkbox"]:checked:disabled+label:before {
+    border-bottom: 2px solid #4CAF50;
+    border-right: 2px solid #4CAF50;
+  }
+
+}
