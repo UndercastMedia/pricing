@@ -29,10 +29,12 @@ self.addEventListener('fetch', function(event) {
   );
 
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function (cache) {
-      fetch(request).then(function (response) {
-        cache.put(request, response.clone());
+    caches.open(CACHE_NAME).then(function(cache) {
+      cache.match(event.request).then(function (response) {
+        response || fetch(event.request).then(function(response) {
+          cache.put(event.request, response.clone());
+        });
       });
-    });
+    })
   );
 });
