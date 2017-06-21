@@ -9,32 +9,38 @@ var urlsToCache = [];
 urlsToCache.push("{{ page.url }}");
 {% endfor %}
 
-var CACHE_NAME = 'cast-cache-v1';
+var CACHE = 'cast-cache-v1';
 
-self.addEventListener('install', function(event) {
-  self.skipWaiting();
+self.addEventListener('install', function(evt) {
+  evt.waitUntil(precache());
+});
 
-  event.waitUntil(caches.open(CACHE_NAME).then(function(cache) {
+function precache() {
+  return caches.open(CACHE).then(function (cache) {
     return cache.addAll(urlsToCache);
+  });
+}
+
+self.addEventListener('fetch', function(evt) {
+  evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
+    return fromCache(evt.request);
   }));
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    fetch(event.request).catch(function() {
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match(event.request);
-      })
-    })
-  );
+function fromNetwork(request, timeout) {
+  return new Promise(function (fulfill, reject) {
+    var timeoutId = setTimeout(reject, timeout);
+    fetch(request).then(function (response) {
+      clearTimeout(timeoutId);
+      fulfill(response);
+    }, reject);
+  });
+}
 
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      cache.match(event.request).then(function (response) {
-        response || fetch(event.request).then(function(response) {
-          cache.put(event.request, response.clone());
-        });
-      });
-    })
-  );
-});
+function fromCache(request) {
+  return caches.open(CACHE).then(function (cache) {
+    return cache.match(request).then(function (matching) {
+      return matching || Promise.reject('no-match');
+    });
+  });
+}
