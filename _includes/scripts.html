@@ -7,55 +7,5 @@
 <script src="/js/materialize/waves.js"></script>
 <script src="/js/materialize/carousel.js"></script>
 
-<script>
-  $('.carousel.carousel-slider').carousel({fullWidth: true});
-</script>
-
-{% if page.carousel %}
-<script>
-  function next() {
-    $('.carousel').carousel('next');
-    $(window).scrollTop(0);
-  }
-  
-  function restart() {
-    $('.carousel').carousel('set', 1);
-    $(window).scrollTop(0);
-  }
-  
-  function prev() {
-    $('.carousel').carousel('prev');
-    $(window).scrollTop(0);
-  }
-
-  {% for carousel in page.carousel %}
-  
-  {% for option in carousel.options %}
-  {% assign price = option.price %}
-  {% break %}
-  {% endfor %}
-  
-  var {{ carousel.id }} = {{ price }};
-  
-  function update{{ carousel.id | capitalize }}(n) {
-    updateEstimate(n - {{ carousel.id }});
-    {{ carousel.id }} = n;
-  }
-  
-  {% endfor %}
-  
-  var total = 0;
-  
-  function updateEstimate(n) {
-    total += n;
-    $('#estimate').text('$' + total + ' - $' + (total * 2));
-  }
-  
-  function setInitEstimate() {
-    total = {% for carousel in page.carousel %}{% if forloop.first %}{{ carousel.id }}{% else %} + {{ carousel.id}}{% endif %}{% endfor %};
-    updateEstimate(0);
-  }
-  
-  setInitEstimate();
-</script>
-{% endif %}
+{% include scripts/carousel.html %}
+{% include scripts/service-worker.html %}
