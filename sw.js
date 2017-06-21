@@ -21,8 +21,20 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
+    fetch(event.request).catch(function() {
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.match(event.request);
+      })
     })
+  );
+
+  event.waitUntil(
+    return caches.open(CACHE_NAME).then(function (cache) {
+      return fetch(request).then(function (response) {
+        return cache.put(request, response.clone()).then(function () {
+          return response;
+        });
+      });
+    });
   );
 });
