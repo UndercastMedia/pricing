@@ -10,7 +10,7 @@
                type="radio"
                id="{{ include.id }}{{ forloop.index }}"
                {% if forloop.first %}checked{% endif %}
-               onclick="update{{ include.id | capitalize }}({{ option.price }})">
+               onclick="update{{ include.id | capitalize }}({{ option.price }});next();">
         <label for="{{ include.id }}{{ forloop.index }}">{{ option.label }}</label>
       </p>
       {% endfor %}

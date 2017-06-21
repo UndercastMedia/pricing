@@ -1,35 +1,46 @@
 .carousel {
-  
+
    overflow: visible !important;
-  
+
   .carousel-item {
-    
+
     .content-wrapper {
       margin: auto;
       max-width: 425px;
       padding: 10px;
     }
-    
+
+    .carousel-img {
+
+      margin-bottom: -20px;
+
+      img {
+        height: auto;
+        width: 150px;
+      }
+
+    }
+
     h1,
     h2,
     p {
       color: #fff;
     }
-    
+
   }
-  
+
   .actions {
-    
+
     margin-top: 50px;
-    
+
     .prev {
       float: left;
     }
-    
+
     .next {
       float: right;
     }
-    
+
   }
-  
+
 }
