@@ -20,26 +20,21 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  console.log('updating cache');
-
   event.respondWith(
     caches.open(CACHE_NAME).then(function(cache) {
-      return cache.match(event.request).then(function (response) {
+      fetch(event.request).then(function (response) {
         return response || fetch(event.request).then(function(response) {
           cache.put(event.request, response.clone());
           return response;
         });
+      }).catch(function() {
+        return cache.match(event.request).then(function (response) {
+          return response || fetch(event.request).then(function(response) {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        });
       });
-    })
-  );
-});
-
-self.addEventListener('fetch', function(event) {
-  console.log('fetching network first');
-
-  event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request);
     })
   );
 });
