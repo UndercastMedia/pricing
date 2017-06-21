@@ -11,6 +11,3 @@ defaults:
       path: "index.html"
     values:
       layout: "default"
-
-offline:
-  strategy: network-only
